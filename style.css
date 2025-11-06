@@ -20,6 +20,29 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
 .logo { width:140px; height:auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); transition: transform 0.3s, filter 0.3s; z-index:1; }
 .logo:hover { transform: scale(1.05); filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25)); }
 
+.hero {
+    position: relative; /* Ensure absolute children are positioned relative to this section */
+    overflow: hidden; /* Optional: prevents the oversized logo from overflowing */
+}
+
+.hero-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centers the logo */
+    width: 500px; /* adjust as needed */
+    max-width: 90%; /* prevents it from being too big on mobile */
+    height: auto;
+    z-index: 0; /* behind the text */
+    opacity: 0.15; /* subtle, can adjust */
+    pointer-events: none; /* ensures the logo doesn't block clicks */
+}
+
+.hero-text {
+    position: relative; /* brings text above the logo */
+    z-index: 1;
+}
+
 /* Headers & text */
 h1,h2 { color:#264653; z-index:1; }
 h1 { font-size:2.7rem; }
