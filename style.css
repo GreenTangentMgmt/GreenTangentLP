@@ -16,38 +16,39 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
 /* Sections */
 .section { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem 1rem; position:relative; }
 
-/* Hero section: relative positioning so absolute logo works */
+/* Hero section: relative positioning */
 .hero {
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-height: 100vh;       /* full viewport height */
+    display: block;          /* normal flow for text, remove flex */
+    padding: 2rem 1rem;      /* optional spacing */
+    text-align: center;
 }
 
-/* Hero logo: absolute, behind text, pulsing + rotating */
+/* Hero logo: absolute, behind text, pulse + rotate */
 .hero-logo {
     position: absolute;
-    top: 50%;
+    top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    width: 500px;        /* adjust for desktop */
-    max-width: 90%;      /* responsive */
+    width: 500px; 
+    max-width: 90%;
     height: auto;
-    opacity: 0.08;       /* subtle background */
+    opacity: 0.08; 
     pointer-events: none;
-    z-index: 0;          /* behind text */
+    z-index: 0;
 
     /* Animation */
     animation: logo-pulse-rotate 12s infinite ease-in-out;
 }
 
-/* Hero text: always above the logo */
+/* Hero text: above the logo */
 .hero-text {
-    position: relative;  /* ensures z-index works */
+    position: relative; /* above the logo */
     z-index: 1;
-    text-align: center;  /* center text horizontally */
+    top: 50%; 
+    transform: translateY(-50%); /* vertically center text */
 }
 
 /* Pulse + rotate animation */
@@ -59,7 +60,7 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
     100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
 }
 
-/* Optional: adjust for mobile */
+/* Mobile adjustments */
 @media screen and (max-width:600px){
     .hero-logo { width: 250px; }
 }
