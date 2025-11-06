@@ -3,98 +3,74 @@
 body, html { width:100%; height:100%; overflow-x:hidden; position:relative; }
 body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264653; }
 
-/* Canvas for tangent lines */
-#bg-canvas {
-  position:fixed;
+/* Section canvas */
+.section-bg-canvas {
+  position: absolute;
   top:0;
   left:0;
   width:100%;
   height:100%;
-  z-index:-1;
+  z-index:0;
+  pointer-events: none;
 }
 
 /* Sections */
-.section { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem 1rem; position:relative; }
+.section {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:2rem 1rem;
+  position:relative;
+}
+.section > * { position: relative; z-index:1; }
 
-/* Hero full-screen container */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;           /* full viewport height */
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* vertical center */
-    align-items: center;      /* horizontal center */
-    text-align: center;
-    padding: 0;               /* remove extra padding */
+/* Hero Content */
+.hero .hero-content {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index:1;
 }
 
-/* Hero logo: absolutely positioned behind text */
+/* Hero logo */
 .hero-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    width: 500px;          /* adjust for desktop */
-    max-width: 90%;        /* responsive */
-    opacity: 0.08;         /* subtle */
-    pointer-events: none;   /* doesn't block clicks */
-    z-index: 0;             /* behind text */
-
-    animation: logo-pulse-rotate 12s infinite ease-in-out;
+  width: 400px;
+  max-width: 90%;
+  height: auto;
+  margin-top: 2rem;
+  filter: drop-shadow(0 8px 25px rgba(0,0,0,0.35));
+  transition: transform 0.3s, filter 0.3s;
+}
+.hero-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45));
 }
 
-/* Pulse + rotate animation */
-@keyframes logo-pulse-rotate {
-    0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-    25%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
-    50%  { transform: translate(-50%, -50%) scale(1.05) rotate(-1.5deg); }
-    75%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
-    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-}
-
-/* Make sure hero text sits above logo */
-.hero h1,
-.hero p,
-.hero .brands,
-.hero .scroll-cue {
-    position: relative;
-    z-index: 1;
-}
-
-/* Pulse + rotate animation */
-@keyframes logo-pulse-rotate {
-    0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-    25%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
-    50%  { transform: translate(-50%, -50%) scale(1.05) rotate(-1.5deg); }
-    75%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
-    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-}
-
-/* Responsive */
-@media screen and (max-width:600px){
-    .hero-logo { width: 80%; max-width: 300px; }
-}
+/* Other logos */
+.logo { width:140px; height:auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); transition: transform 0.3s, filter 0.3s; }
+.logo:hover { transform: scale(1.05); filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25)); }
 
 /* Headers & text */
-h1,h2 { color:#264653; z-index:1; }
+h1,h2 { color:#264653; }
 h1 { font-size:2.7rem; }
 h2 { font-size:2rem; margin-bottom:1rem; }
-p { font-size:1.15rem; max-width:600px; color:#264653; margin-bottom:1.5rem; z-index:1; }
+p { font-size:1.15rem; max-width:600px; color:#264653; margin-bottom:1.5rem; }
 
 /* Brand buttons */
-.brands, .brand-section { display:flex; flex-direction:column; gap:1rem; z-index:1; }
+.brands, .brand-section { display:flex; flex-direction:column; gap:1rem; }
 .brand-btn { font-size:1.2rem; color:#fff; background:#2a9d8f; padding:0.8rem 1.5rem; border-radius:8px; text-decoration:none; transition: background 0.3s, transform 0.3s; }
 .brand-btn:hover { background:#21867a; transform: translateY(-3px); }
 
 /* Contact */
-.contact a { font-weight:600; color:#2a9d8f; text-decoration:none; transition: color 0.3s; z-index:1; }
+.contact a { font-weight:600; color:#2a9d8f; text-decoration:none; transition: color 0.3s; }
 .contact a:hover { color:#21867a; }
-.contact { margin-top:3rem; } /* closer to footer */
+.contact { margin-top:3rem; }
 
 /* Scroll cue */
-.scroll-cue { margin-top:2rem; font-size:0.9rem; color:#264653; animation:bounce 1.5s infinite; z-index:1; }
+.scroll-cue { margin-top:2rem; font-size:0.9rem; color:#264653; animation:bounce 1.5s infinite; }
 @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(6px);}60%{transform:translateY(3px);} }
 
 /* Diagonal fade-in animations */
@@ -111,9 +87,9 @@ p { font-size:1.15rem; max-width:600px; color:#264653; margin-bottom:1.5rem; z-i
 .scroll-animate.visible { opacity:1; transform: translate(0,0); }
 
 /* Footer */
-footer { font-size:0.9rem; color:#264653; padding:2rem 0; z-index:1; }
+footer { font-size:0.9rem; color:#264653; padding:2rem 0; }
 
 /* Responsive */
 @media screen and (max-width:600px){
-    h1{font-size:2rem;} h2{font-size:1.5rem;} p{font-size:1rem;} .logo{width:100px;} .brand-btn{font-size:1rem; padding:0.6rem 1rem;}
+    h1{font-size:2rem;} h2{font-size:1.5rem;} p{font-size:1rem;} .hero-logo{width:200px;} .logo{width:100px;} .brand-btn{font-size:1rem; padding:0.6rem 1rem;}
 }
