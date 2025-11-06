@@ -16,39 +16,52 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
 /* Sections */
 .section { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem 1rem; position:relative; }
 
-/* Hero logo behind text */
+/* Hero section: relative positioning so absolute logo works */
 .hero {
     position: relative;
-    overflow: hidden; /* ensures logo doesn't overflow the section */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Hero logo: absolute, behind text, pulsing + rotating */
 .hero-logo {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;       /* adjust size as needed */
-    max-width: 90%;     /* scales for smaller screens */
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    width: 500px;        /* adjust for desktop */
+    max-width: 90%;      /* responsive */
     height: auto;
-    z-index: 0;         /* behind the text */
-    opacity: 0.1;       /* subtle background effect */
+    opacity: 0.08;       /* subtle background */
     pointer-events: none;
+    z-index: 0;          /* behind text */
+
+    /* Animation */
+    animation: logo-pulse-rotate 12s infinite ease-in-out;
 }
 
-/* Keep hero text above logo */
+/* Hero text: always above the logo */
 .hero-text {
-    position: relative;
+    position: relative;  /* ensures z-index works */
     z-index: 1;
+    text-align: center;  /* center text horizontally */
 }
 
-/* Optional: dynamic effect (rotation/pulse) */
-@keyframes logo-pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-    50% { transform: translate(-50%, -50%) scale(1.05) rotate(3deg); }
+/* Pulse + rotate animation */
+@keyframes logo-pulse-rotate {
+    0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    25%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
+    50%  { transform: translate(-50%, -50%) scale(1.05) rotate(-1.5deg); }
+    75%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
 }
 
-.hero-logo {
-    animation: logo-pulse 10s infinite ease-in-out;
+/* Optional: adjust for mobile */
+@media screen and (max-width:600px){
+    .hero-logo { width: 250px; }
 }
 
 /* Headers & text */
