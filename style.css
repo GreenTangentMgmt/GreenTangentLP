@@ -1,95 +1,52 @@
-/* Reset & global */
+/* Reset & Global */
 * { box-sizing:border-box; margin:0; padding:0; font-family:'Montserrat',sans-serif; }
-body, html { width:100%; height:100%; overflow-x:hidden; position:relative; }
-body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264653; }
+body, html { width:100%; height:100%; scroll-behavior:smooth; }
+body { text-align:center; color:#264653; background:#f0fdf4; }
 
-/* Section canvas */
-.section-bg-canvas {
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:0;
-  pointer-events: none;
-}
+/* Section Styling */
+.section { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; position:relative; }
+h1 { font-size:3rem; margin-bottom:1rem; }
+h2 { font-size:2rem; margin-bottom:1rem; }
+p { font-size:1.2rem; max-width:600px; margin-bottom:1.5rem; }
 
-/* Sections */
-.section {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:2rem 1rem;
-  position:relative;
-}
-.section > * { position: relative; z-index:1; }
-
-/* Hero Content */
-.hero .hero-content {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  z-index:1;
-}
-
-/* Hero logo */
+/* Hero Logo Under Text */
 .hero-logo {
   width: 400px;
   max-width: 90%;
-  height: auto;
-  margin-top: 2rem;
-  filter: drop-shadow(0 8px 25px rgba(0,0,0,0.35));
-  transition: transform 0.3s, filter 0.3s;
-}
-.hero-logo:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45));
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
 
-/* Other logos */
-.logo { width:140px; height:auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); transition: transform 0.3s, filter 0.3s; }
-.logo:hover { transform: scale(1.05); filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25)); }
+/* Brand Buttons */
+.brand-btn {
+  display:inline-block;
+  margin:0.5rem;
+  padding:0.8rem 1.5rem;
+  border-radius:8px;
+  background:#2a9d8f;
+  color:white;
+  text-decoration:none;
+  font-size:1.2rem;
+  transition: transform 0.3s, background 0.3s;
+}
+.brand-btn:hover { transform: translateY(-3px); background:#21867a; }
 
-/* Headers & text */
-h1,h2 { color:#264653; }
-h1 { font-size:2.7rem; }
-h2 { font-size:2rem; margin-bottom:1rem; }
-p { font-size:1.15rem; max-width:600px; color:#264653; margin-bottom:1.5rem; }
-
-/* Brand buttons */
-.brands, .brand-section { display:flex; flex-direction:column; gap:1rem; }
-.brand-btn { font-size:1.2rem; color:#fff; background:#2a9d8f; padding:0.8rem 1.5rem; border-radius:8px; text-decoration:none; transition: background 0.3s, transform 0.3s; }
-.brand-btn:hover { background:#21867a; transform: translateY(-3px); }
-
-/* Contact */
-.contact a { font-weight:600; color:#2a9d8f; text-decoration:none; transition: color 0.3s; }
-.contact a:hover { color:#21867a; }
-.contact { margin-top:3rem; }
-
-/* Scroll cue */
-.scroll-cue { margin-top:2rem; font-size:0.9rem; color:#264653; animation:bounce 1.5s infinite; }
+/* Scroll Cue */
+.scroll-cue { margin-top:2rem; font-size:1rem; animation:bounce 1.5s infinite; }
 @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(6px);}60%{transform:translateY(3px);} }
 
-/* Diagonal fade-in animations */
-.fade-diagonal { opacity:0; transform: translate(30px,-30px); animation: fadeDiagonal 0.8s forwards; }
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
-.delay-5 { animation-delay: 1s; }
-@keyframes fadeDiagonal { to { opacity:1; transform:translate(0,0); } }
+/* Brand Section Background Animations */
+#fullscent { background: linear-gradient(135deg, orange, magenta); background-size: 400% 400%; animation: gradientMove 10s ease infinite; color:white; }
+#frozenalchemy { background: linear-gradient(135deg, teal, green); background-size: 400% 400%; animation: gradientMove 10s ease infinite; color:white; }
+@keyframes gradientMove { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
 
-/* Scroll fade-in */
-.scroll-animate { opacity:0; transform: translate(30px,-30px); transition: opacity 0.8s, transform 0.8s; }
-.scroll-animate.visible { opacity:1; transform: translate(0,0); }
+/* Logos in Brand Sections */
+.logo { width:140px; height:auto; margin-bottom:1rem; }
 
 /* Footer */
-footer { font-size:0.9rem; color:#264653; padding:2rem 0; }
+footer { padding:2rem; font-size:0.9rem; }
 
 /* Responsive */
 @media screen and (max-width:600px){
-    h1{font-size:2rem;} h2{font-size:1.5rem;} p{font-size:1rem;} .hero-logo{width:200px;} .logo{width:100px;} .brand-btn{font-size:1rem; padding:0.6rem 1rem;}
+  h1{font-size:2rem;} h2{font-size:1.5rem;} p{font-size:1rem;} .hero-logo{width:200px;} .logo{width:100px;} .brand-btn{font-size:1rem;}
 }
