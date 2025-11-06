@@ -30,23 +30,35 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
     padding: 0;               /* remove extra padding */
 }
 
-/* Hero logo: behind text, full size, animate */
+/* Hero logo: absolutely positioned behind text */
 .hero-logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    width: 60%;               /* adjust as needed */
-    max-width: 600px;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 0;
+    width: 500px;          /* adjust for desktop */
+    max-width: 90%;        /* responsive */
+    opacity: 0.08;         /* subtle */
+    pointer-events: none;   /* doesn't block clicks */
+    z-index: 0;             /* behind text */
 
     animation: logo-pulse-rotate 12s infinite ease-in-out;
 }
 
-/* Hero text: on top */
-.hero-text {
+/* Pulse + rotate animation */
+@keyframes logo-pulse-rotate {
+    0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    25%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
+    50%  { transform: translate(-50%, -50%) scale(1.05) rotate(-1.5deg); }
+    75%  { transform: translate(-50%, -50%) scale(1.03) rotate(1.5deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+/* Make sure hero text sits above logo */
+.hero h1,
+.hero p,
+.hero .brands,
+.hero .scroll-cue {
     position: relative;
     z-index: 1;
 }
