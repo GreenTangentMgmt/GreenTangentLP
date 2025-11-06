@@ -16,39 +16,39 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
 /* Sections */
 .section { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem 1rem; position:relative; }
 
-/* Hero section: relative positioning */
+/* Hero full-screen container */
 .hero {
     position: relative;
+    width: 100%;
+    height: 100vh;           /* full viewport height */
     overflow: hidden;
-    min-height: 100vh;       /* full viewport height */
-    display: block;          /* normal flow for text, remove flex */
-    padding: 2rem 1rem;      /* optional spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* vertical center */
+    align-items: center;      /* horizontal center */
     text-align: center;
+    padding: 0;               /* remove extra padding */
 }
 
-/* Hero logo: absolute, behind text, pulse + rotate */
+/* Hero logo: behind text, full size, animate */
 .hero-logo {
     position: absolute;
-    top: 50%; 
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    width: 500px; 
-    max-width: 90%;
-    height: auto;
-    opacity: 0.08; 
+    width: 60%;               /* adjust as needed */
+    max-width: 600px;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
 
-    /* Animation */
     animation: logo-pulse-rotate 12s infinite ease-in-out;
 }
 
-/* Hero text: above the logo */
+/* Hero text: on top */
 .hero-text {
-    position: relative; /* above the logo */
+    position: relative;
     z-index: 1;
-    top: 50%; 
-    transform: translateY(-50%); /* vertically center text */
 }
 
 /* Pulse + rotate animation */
@@ -60,9 +60,9 @@ body { background:#f0fdf4; text-align:center; scroll-behavior:smooth; color:#264
     100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
 }
 
-/* Mobile adjustments */
+/* Responsive */
 @media screen and (max-width:600px){
-    .hero-logo { width: 250px; }
+    .hero-logo { width: 80%; max-width: 300px; }
 }
 
 /* Headers & text */
